@@ -12,6 +12,9 @@ if len(sys.argv) > 1:
 	path = sys.argv[1]
 	if os.path.isdir(path):
 		for i in os.listdir(path):
-			invert(i)
+			try:
+				invert(i)
+			except:
+				print(f"Unable to invert {i}...")
 	else:
 		invert(path)
