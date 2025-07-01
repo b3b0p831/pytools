@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>procport</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f8f9fa; padding: 20px;">
+  <div style="max-width: 600px; margin: auto; background-color: #ffffff; padding: 20px; border: 1px solid #ddd; border-radius: 4px;">
+    <h2 style="color: #333;">📋 Below Average Report</h2>
+    <p>Here is the status summary for monitored hosts:</p>
+
+    <table style="width: 100%; border-collapse: collapse;">
+      <thead>
+        <tr style="background-color: #f2f2f2;">
+          <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">Host</th>
+          <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">Process</th>
+          <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">Status</th>
+        </tr>
+      </thead>
+      {% for host in hosts %}
+        <tbody>
+            <tr>
+            <td style="padding: 8px; border: 1px solid #ddd;">{{ host.fqdn}}</td>
+            <td style="padding: 8px; border: 1px solid #ddd;">{{ host.proc.name }}</td>
+            {%if host.proc.is_running %}
+            <td style="padding: 8px; border: 1px solid #ddd; color: green;">Running</td>
+            {% else %}
+            <td style="padding: 8px; border: 1px solid #ddd; color: red;">Not Running</td>
+            {% endif %}
+            </tr>
+        </tbody>
+      {% endfor %}
+    </table>
+
+    <p style="margin-top: 20px; font-size: 0.9em; color: #555;">
+      Generated on: <strong>{{ curr_time }}</strong>
+    </p>
+  </div>
+</body>
+</html>
